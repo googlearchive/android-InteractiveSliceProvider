@@ -36,18 +36,19 @@ class WeatherSliceBuilder(
 ) : SliceBuilder {
 
     override fun buildSlice(): Slice {
-        val primaryAction = SliceAction(
+        val action = SliceAction.create(
             MyBroadcastReceiver.getIntent(
                 context,
                 InteractiveSliceProvider.ACTION_TOAST,
                 "open weather app"
             ),
-            IconCompat.createWithResource(context, drawable.weather_1), ListBuilder.SMALL_IMAGE,
+            IconCompat.createWithResource(context, drawable.weather_1),
+            ListBuilder.SMALL_IMAGE,
             "Weather is happening!"
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
             gridRow {
-                setPrimaryAction(primaryAction)
+                primaryAction = action
                 cell {
                     addImage(
                         IconCompat.createWithResource(context, drawable.weather_1),

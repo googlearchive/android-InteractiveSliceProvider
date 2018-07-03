@@ -36,29 +36,27 @@ class InputRangeSliceBuilder(
 
     override fun buildSlice(): Slice {
         val icon = IconCompat.createWithResource(context, R.drawable.ic_star_on)
-        val primaryAction = SliceAction(
-            MyBroadcastReceiver.getIntent(
-                context, InteractiveSliceProvider.ACTION_TOAST, "open star rating"
-            ),
-            icon, "Rate"
-        )
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(0xff4285)
             inputRange {
-                setTitle("Star rating")
-                setSubtitle("Rate from 0 to 10.")
-                setMin(0)
-                setThumb(icon)
-                setInputAction(
+                title = "Star rating"
+                subtitle = "Rate from 0 to 10."
+                min = 0
+                thumb = icon
+                inputAction =
+                        MyBroadcastReceiver.getIntent(
+                            context,
+                            InteractiveSliceProvider.ACTION_TOAST_RANGE_VALUE, null
+                        )
+                max = 10
+                value = 8
+                primaryAction = SliceAction.create(
                     MyBroadcastReceiver.getIntent(
-                        context,
-                        InteractiveSliceProvider.ACTION_TOAST_RANGE_VALUE, null
-                    )
+                        context, InteractiveSliceProvider.ACTION_TOAST, "open star rating"
+                    ),
+                    icon, ListBuilder.ICON_IMAGE, "Rate"
                 )
-                setMax(10)
-                setValue(8)
-                setPrimaryAction(primaryAction)
-                setContentDescription("Slider for star ratings.")
+                contentDescription = "Slider for star ratings."
             }
         }
     }

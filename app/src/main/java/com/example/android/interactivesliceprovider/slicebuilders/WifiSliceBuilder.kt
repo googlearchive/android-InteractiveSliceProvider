@@ -42,8 +42,8 @@ class WifiSliceBuilder(
 
     override fun buildSlice(): Slice {
         // Get wifi state
-        val wifiManager = context
-            .applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiManager = context.applicationContext
+            .getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiState = wifiManager.wifiState
         var wifiEnabled = false
         val state: String
@@ -60,9 +60,11 @@ class WifiSliceBuilder(
 
         // Set the first row as a toggle
         val finalWifiEnabled = wifiEnabled
-        val primaryAction = SliceAction(
+        val primaryAction = SliceAction.create(
             MainActivity.getIntent(context, Settings.ACTION_WIFI_SETTINGS),
-            IconCompat.createWithResource(context, drawable.ic_wifi), "Wi-fi Settings"
+            IconCompat.createWithResource(context, drawable.ic_wifi),
+            ListBuilder.ICON_IMAGE,
+            "Wi-fi Settings"
         )
         val toggleCDString = if (wifiEnabled) "Turn wifi off" else "Turn wifi on"
         val sliceCDString = if (wifiEnabled)
@@ -78,7 +80,7 @@ class WifiSliceBuilder(
                 setPrimaryAction(primaryAction)
             }
             addAction(
-                SliceAction(
+                SliceAction.createToggle(
                     MyBroadcastReceiver.getIntent(
                         context, InteractiveSliceProvider.ACTION_WIFI_CHANGED, null
                     ),
@@ -109,11 +111,12 @@ class WifiSliceBuilder(
                     val message =
                         if (locked) "Open wifi password dialog" else "Connect to $networkName"
                     setPrimaryAction(
-                        SliceAction(
+                        SliceAction.create(
                             MyBroadcastReceiver.getIntent(
                                 context, InteractiveSliceProvider.ACTION_TOAST, message
                             ),
                             icon,
+                            ListBuilder.ICON_IMAGE,
                             message
                         )
                     )
@@ -122,7 +125,7 @@ class WifiSliceBuilder(
 
             // Add see more intent
             seeMoreRow {
-                setTitle("See all available networks")
+                title = "See all available networks"
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_right_caret),
                     ListBuilder.SMALL_IMAGE

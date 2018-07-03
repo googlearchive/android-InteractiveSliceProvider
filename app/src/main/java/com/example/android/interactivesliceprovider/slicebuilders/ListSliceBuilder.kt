@@ -37,7 +37,7 @@ class ListSliceBuilder(
         val listData = repo.getListData()
         return list(context, sliceUri, 6_000) {
             row {
-                setTitle("Work")
+                title = "Work"
                 setSubtitle(listData.work, listData.work.isEmpty())
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_work),
@@ -45,7 +45,7 @@ class ListSliceBuilder(
                 )
             }
             row {
-                setTitle("Home")
+                title = "Home"
                 setSubtitle(listData.home, listData.home.isEmpty())
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_home),
@@ -53,7 +53,7 @@ class ListSliceBuilder(
                 )
             }
             row {
-                setTitle("School")
+                title = "School"
                 setSubtitle(listData.school, listData.school.isEmpty())
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_school),

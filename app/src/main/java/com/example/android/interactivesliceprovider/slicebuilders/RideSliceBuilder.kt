@@ -23,6 +23,7 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.Slice
+import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import androidx.slice.builders.header
 import androidx.slice.builders.list
@@ -56,43 +57,46 @@ class RideSliceBuilder(
                 colorSpan, 27, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
-
-        val primaryAction = SliceAction(
+        val action = SliceAction.create(
             MyBroadcastReceiver.getIntent(
                 context, InteractiveSliceProvider.ACTION_TOAST, "get ride"
             ),
-            IconCompat.createWithResource(context, drawable.ic_car), "Get Ride"
+            IconCompat.createWithResource(context, drawable.ic_car),
+            ListBuilder.ICON_IMAGE,
+            "Get Ride"
         )
         return list(context, sliceUri, TimeUnit.SECONDS.toMillis(10)) {
             setAccentColor(0xff4285)
             header {
-                setTitle("Get ride")
-                setSubtitle(headerSubtitle)
-                setSummary("Ride to work in 12 min | Ride home in 1 hour 45 min")
-                setPrimaryAction(primaryAction)
+                title = "Get ride"
+                subtitle = headerSubtitle
+                summary = "Ride to work in 12 min | Ride home in 1 hour 45 min"
+                primaryAction = action
             }
             row {
-                setTitle("Work")
-                setSubtitle(workSubtitle)
+                title = "Work"
+                subtitle = workSubtitle
                 addEndItem(
-                    SliceAction(
+                    SliceAction.create(
                         MyBroadcastReceiver.getIntent(
                             context, InteractiveSliceProvider.ACTION_TOAST, "work"
                         ),
                         IconCompat.createWithResource(context, drawable.ic_work),
+                        ListBuilder.ICON_IMAGE,
                         "Get ride to work"
                     )
                 )
             }
             row {
-                setTitle("Home")
-                setSubtitle(homeSubtitle)
+                title = "Home"
+                subtitle = homeSubtitle
                 addEndItem(
-                    SliceAction(
+                    SliceAction.create(
                         MyBroadcastReceiver.getIntent(
                             context, InteractiveSliceProvider.ACTION_TOAST, "home"
                         ),
                         IconCompat.createWithResource(context, drawable.ic_home),
+                        ListBuilder.ICON_IMAGE,
                         "Get ride home"
                     )
                 )

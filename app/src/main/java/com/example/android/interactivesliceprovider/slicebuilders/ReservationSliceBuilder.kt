@@ -38,25 +38,27 @@ class ReservationSliceBuilder(
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         header {
-            setTitle("Upcoming trip to Seattle")
-            setSubtitle("Feb 1 - 19 | 2 guests")
+            title = "Upcoming trip to Seattle"
+            subtitle = "Feb 1 - 19 | 2 guests"
         }
         addAction(
-            SliceAction(
+            SliceAction.create(
                 MyBroadcastReceiver.getIntent(
                     context,
                     InteractiveSliceProvider.ACTION_TOAST, "show location on map"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_location),
+                ListBuilder.ICON_IMAGE,
                 "Show reservation location"
             )
         )
         addAction(
-            SliceAction(
+            SliceAction.create(
                 MyBroadcastReceiver.getIntent(
                     context, InteractiveSliceProvider.ACTION_TOAST, "contact host"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_text),
+                ListBuilder.ICON_IMAGE,
                 "Contact host"
             )
         )

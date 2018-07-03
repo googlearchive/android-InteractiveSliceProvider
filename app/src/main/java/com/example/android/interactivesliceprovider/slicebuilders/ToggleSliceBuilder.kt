@@ -36,17 +36,18 @@ class ToggleSliceBuilder(
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         setAccentColor(0xff4285)
         row {
-            setTitle("Custom toggle")
-            setSubtitle("It can support two states")
-            setPrimaryAction(
-                SliceAction(
+            title = ("Custom toggle")
+            subtitle = ("It can support two states")
+            primaryAction = (
+                SliceAction.createToggle(
                     MyBroadcastReceiver.getIntent(
                         context,
                         InteractiveSliceProvider.ACTION_TOAST,
                         "star toggled"
                     ),
                     IconCompat.createWithResource(context, drawable.toggle_star),
-                    "Toggle star", true /* isChecked */
+                    "Toggle start",
+                    true /* isChecked */
                 )
             )
         }

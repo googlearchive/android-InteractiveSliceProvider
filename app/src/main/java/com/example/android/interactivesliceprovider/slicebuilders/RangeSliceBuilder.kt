@@ -36,20 +36,21 @@ class RangeSliceBuilder(
 
     override fun buildSlice(): Slice {
         val icon = IconCompat.createWithResource(context, R.drawable.ic_star_on)
-        val primaryAction = SliceAction(
-            MyBroadcastReceiver.getIntent(
-                context, InteractiveSliceProvider.ACTION_TOAST, "open download"
-            ), icon,
-            "Download"
-        )
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(0xff4285)
             range {
-                setTitle("Download progress")
-                setSubtitle("Download is happening")
-                setMax(100)
-                setValue(75)
-                setPrimaryAction(primaryAction)
+                title = ("Download progress")
+                subtitle = ("Download is happening")
+                max = (100)
+                value = (75)
+                primaryAction = SliceAction.create(
+                    MyBroadcastReceiver.getIntent(
+                        context, InteractiveSliceProvider.ACTION_TOAST, "open download"
+                    ),
+                    icon,
+                    ListBuilder.ICON_IMAGE,
+                    "Download"
+                )
             }
         }
     }

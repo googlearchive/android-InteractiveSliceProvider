@@ -38,27 +38,30 @@ class NoteSliceBuilder(
         setAccentColor(0xff4285)
         row { setTitle("Create new note") }
         addAction(
-            SliceAction(
+            SliceAction.create(
                 MyBroadcastReceiver.getIntent(
                     context, InteractiveSliceProvider.ACTION_TOAST, "create note"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_create),
+                ListBuilder.ICON_IMAGE,
                 "Create note"
             )
         )
         addAction(
-            SliceAction(
+            SliceAction.create(
                 MyBroadcastReceiver.getIntent(
                     context, InteractiveSliceProvider.ACTION_TOAST, "voice note"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_voice),
+                ListBuilder.ICON_IMAGE,
                 "Voice note"
             )
         )
         addAction(
-            SliceAction(
+            SliceAction.create(
                 MainActivity.getIntent(context, "android.media.action.IMAGE_CAPTURE"),
                 IconCompat.createWithResource(context, drawable.ic_camera),
+                ListBuilder.ICON_IMAGE,
                 "Photo note"
             )
         )

@@ -37,7 +37,7 @@ class GallerySliceBuilder(
 ) : SliceBuilder {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
-        val primaryAction = SliceAction(
+        val action = SliceAction.create(
             MyBroadcastReceiver.getIntent(
                 context, InteractiveSliceProvider.ACTION_TOAST, "open photo album"
             ),
@@ -48,26 +48,29 @@ class GallerySliceBuilder(
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(0xff4285)
             row {
-                setTitle("Family trip to Hawaii")
-                setSubtitle("Sep 30, 2017 - Oct 2, 2017")
-                setPrimaryAction(primaryAction)
+                title = "Family trip to Hawaii"
+                subtitle = ("Sep 30, 2017 - Oct 2, 2017")
+                primaryAction = action
             }
             addAction(
-                SliceAction(
+                SliceAction.create(
                     MyBroadcastReceiver.getIntent(
                         context,
                         InteractiveSliceProvider.ACTION_TOAST, "cast photo album"
                     ),
-                    IconCompat.createWithResource(context, drawable.ic_cast), "Cast photo album"
+                    IconCompat.createWithResource(context, drawable.ic_cast),
+                    ListBuilder.ICON_IMAGE,
+                    "Cast photo album"
                 )
             )
             addAction(
-                SliceAction(
+                SliceAction.create(
                     MyBroadcastReceiver.getIntent(
                         context,
                         InteractiveSliceProvider.ACTION_TOAST, "share photo album"
                     ),
                     IconCompat.createWithResource(context, drawable.ic_share),
+                    ListBuilder.ICON_IMAGE,
                     "Share photo album"
                 )
             )
@@ -85,11 +88,11 @@ class GallerySliceBuilder(
                         addImage(ic, ListBuilder.LARGE_IMAGE)
                     }
                 }
-                setPrimaryAction(primaryAction)
+                primaryAction = action
                 setSeeMoreAction(
                     MyBroadcastReceiver.getIntent(
                         context,
-                        InteractiveSliceProvider.ACTION_TOAST, "see your gallery"
+                        InteractiveSliceProvider.ACTION_TOAST, "See your gallery"
                     )
                 )
                 setContentDescription("Images from your trip to Hawaii")
