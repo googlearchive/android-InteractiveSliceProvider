@@ -27,11 +27,13 @@ import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class ToggleSliceBuilder(
     val context: Context,
-    val sliceUri: Uri
-) : SliceBuilder {
+    sliceUri: Uri,
+    appIndexingMetaData: AppIndexingMetadata
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         setAccentColor(0xff4285)

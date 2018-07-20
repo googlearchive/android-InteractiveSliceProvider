@@ -24,15 +24,16 @@ import androidx.slice.builders.SliceAction
 import androidx.slice.builders.list
 import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MainActivity
 import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class NoteSliceBuilder(
     val context: Context,
-    val sliceUri: Uri
-) : SliceBuilder {
+    sliceUri: Uri,
+    appIndexingMetaData: AppIndexingMetadata
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         setAccentColor(0xff4285)
@@ -59,7 +60,9 @@ class NoteSliceBuilder(
         )
         addAction(
             SliceAction.create(
-                MainActivity.getIntent(context, "android.media.action.IMAGE_CAPTURE"),
+                InteractiveSliceProvider.getPendingIntent(
+                    context, "android.media.action.IMAGE_CAPTURE"
+                ),
                 IconCompat.createWithResource(context, drawable.ic_camera),
                 ListBuilder.ICON_IMAGE,
                 "Photo note"

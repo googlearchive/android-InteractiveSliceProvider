@@ -30,11 +30,13 @@ import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class ReservationSliceBuilder(
     val context: Context,
-    val sliceUri: Uri
-) : SliceBuilder {
+    sliceUri: Uri,
+    appIndexingMetaData: AppIndexingMetadata
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         header {

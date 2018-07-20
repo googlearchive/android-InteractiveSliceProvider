@@ -26,12 +26,14 @@ import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceBuilder
 import com.example.android.interactivesliceprovider.data.DataRepository
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class ListSliceBuilder(
     val context: Context,
-    val sliceUri: Uri,
+    sliceUri: Uri,
+    appIndexingMetaData: AppIndexingMetadata,
     val repo: DataRepository
-) : SliceBuilder {
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice(): Slice {
         val listData = repo.getListData()

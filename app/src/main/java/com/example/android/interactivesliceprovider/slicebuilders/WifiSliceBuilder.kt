@@ -29,16 +29,17 @@ import androidx.slice.builders.list
 import androidx.slice.builders.row
 import androidx.slice.builders.seeMoreRow
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MainActivity
 import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class WifiSliceBuilder(
     val context: Context,
-    val sliceUri: Uri
-) : SliceBuilder {
+    sliceUri: Uri,
+    appIndexingMetaData: AppIndexingMetadata
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice(): Slice {
         // Get wifi state
@@ -61,7 +62,7 @@ class WifiSliceBuilder(
         // Set the first row as a toggle
         val finalWifiEnabled = wifiEnabled
         val primaryAction = SliceAction.create(
-            MainActivity.getIntent(context, Settings.ACTION_WIFI_SETTINGS),
+            InteractiveSliceProvider.getPendingIntent(context, Settings.ACTION_WIFI_SETTINGS),
             IconCompat.createWithResource(context, drawable.ic_wifi),
             ListBuilder.ICON_IMAGE,
             "Wi-fi Settings"

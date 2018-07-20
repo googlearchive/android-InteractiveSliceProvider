@@ -32,12 +32,14 @@ import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 import java.util.concurrent.TimeUnit
 
 class RideSliceBuilder(
     val context: Context,
-    val sliceUri: Uri
-) : SliceBuilder {
+    sliceUri: Uri,
+    appIndexingMetaData: AppIndexingMetadata
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice(): Slice {
         val colorSpan = ForegroundColorSpan(-0xf062a8)

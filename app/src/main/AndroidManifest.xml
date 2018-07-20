@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
+            <meta-data
+                android:name="android.metadata.SLICE_URI"
+                android:value="content://com.example.android.interactivesliceprovider/hello" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +30,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="androidx.intent.SLICE_ACTION" />
-
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.app.slice.category.SLICE" />
 
                 <data

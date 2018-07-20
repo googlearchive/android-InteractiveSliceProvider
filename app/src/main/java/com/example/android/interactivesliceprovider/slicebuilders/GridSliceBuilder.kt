@@ -27,12 +27,14 @@ import androidx.slice.builders.list
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
 import com.example.android.interactivesliceprovider.data.DataRepository
+import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class GridSliceBuilder(
     val context: Context,
-    val sliceUri: Uri,
-    val repo: DataRepository
-) : SliceBuilder {
+    sliceUri: Uri,
+    val repo: DataRepository,
+    appIndexingMetaData: AppIndexingMetadata
+) : SliceBuilder(sliceUri, appIndexingMetaData) {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         val data = repo.getGridData()
