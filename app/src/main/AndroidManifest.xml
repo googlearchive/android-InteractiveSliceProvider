@@ -14,16 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.metadata.SLICE_URI"
-                android:value="content://com.example.android.interactivesliceprovider/hello" />
+                android:value="content://com.example.android.interactivesliceprovider/default" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name=".InteractiveSliceProvider"
             android:authorities="com.example.android.interactivesliceprovider"

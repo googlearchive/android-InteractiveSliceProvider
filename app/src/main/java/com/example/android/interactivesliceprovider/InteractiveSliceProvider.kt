@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.android.interactivesliceprovider
 
 import android.app.PendingIntent
@@ -26,6 +25,7 @@ import androidx.core.content.edit
 import androidx.slice.Slice
 import androidx.slice.SliceManager
 import androidx.slice.SliceProvider
+import com.example.android.interactivesliceprovider.Paths.DEFAULT
 import com.example.android.interactivesliceprovider.Paths.GALLERY
 import com.example.android.interactivesliceprovider.Paths.HELLO
 import com.example.android.interactivesliceprovider.Paths.INPUT_RANGE
@@ -41,6 +41,7 @@ import com.example.android.interactivesliceprovider.Paths.WIFI
 import com.example.android.interactivesliceprovider.data.DataRepository
 import com.example.android.interactivesliceprovider.data.FakeDataSource
 import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
+import com.example.android.interactivesliceprovider.slicebuilders.DefaultSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.GallerySliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.GridSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.HelloSliceBuilder
@@ -85,20 +86,29 @@ class InteractiveSliceProvider : SliceProvider() {
     }
 
     private fun getSliceBuilder(sliceUri: Uri) = when (sliceUri.path) {
+        DEFAULT -> DefaultSliceBuilder(
+                context = context,
+                sliceUri = sliceUri,
+                appIndexingMetaData = AppIndexingMetadata(
+                        url = HOST + DEFAULT,
+                        name = "Default",
+                        keywords = listOf("default")
+                )
+        )
         HELLO -> HelloSliceBuilder(
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$WIFI",
-                name = "Wifi",
-                keywords = listOf("wifi")
+                url = HOST + HELLO,
+                name = "Hello",
+                keywords = listOf("hello")
             )
         )
         WIFI -> WifiSliceBuilder(
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$WIFI",
+                url = HOST + WIFI,
                 name = "Wifi",
                 keywords = listOf("wifi")
             )
@@ -107,7 +117,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$NOTE",
+                url = HOST + NOTE,
                 name = "Note",
                 keywords = listOf("note")
             )
@@ -116,7 +126,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$RIDE",
+                url = HOST + RIDE,
                 name = "Ride",
                 keywords = listOf("ride")
             )
@@ -125,7 +135,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$TOGGLE",
+                url = HOST + TOGGLE,
                 name = "Toggle",
                 keywords = listOf("toggle")
             )
@@ -134,7 +144,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$GALLERY",
+                url = HOST + GALLERY,
                 name = "Gallery",
                 keywords = listOf("gallery")
             )
@@ -143,7 +153,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$WEATHER",
+                url = HOST + WEATHER,
                 name = "Weather",
                 keywords = listOf("weather")
             )
@@ -152,7 +162,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$RESERVATION",
+                url = HOST + RESERVATION,
                 name = "Reservation",
                 keywords = listOf("reservation")
             )
@@ -162,7 +172,7 @@ class InteractiveSliceProvider : SliceProvider() {
             sliceUri = sliceUri,
             repo = repo,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$LOAD_LIST",
+                url = HOST + LOAD_LIST,
                 name = "Load List",
                 keywords = listOf("load", "list")
             )
@@ -172,7 +182,7 @@ class InteractiveSliceProvider : SliceProvider() {
             sliceUri = sliceUri,
             repo = repo,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$LOAD_GRID",
+                url = HOST + LOAD_GRID,
                 name = "Load Grid",
                 keywords = listOf("load", "grid")
             )
@@ -181,7 +191,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$INPUT_RANGE",
+                url = HOST + INPUT_RANGE,
                 name = "Input Range",
                 keywords = listOf("input", "range")
             )
@@ -190,7 +200,7 @@ class InteractiveSliceProvider : SliceProvider() {
             context = context,
             sliceUri = sliceUri,
             appIndexingMetaData = AppIndexingMetadata(
-                url = "https://interactivesliceprovider.android.example.com$RANGE",
+                url = HOST + RANGE,
                 name = "Range",
                 keywords = listOf("range")
             )
@@ -235,7 +245,10 @@ class InteractiveSliceProvider : SliceProvider() {
     }
 }
 
+const val HOST = "https://interactivesliceprovider.android.example.com"
+
 object Paths {
+    const val DEFAULT = "/default"
     const val HELLO = "/hello"
     const val WIFI = "/wifi"
     const val NOTE = "/note"

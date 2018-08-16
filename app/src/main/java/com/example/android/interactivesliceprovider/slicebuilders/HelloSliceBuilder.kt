@@ -32,7 +32,7 @@ class HelloSliceBuilder(
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(0xff4285)
             row {
-                title = "Hello World"
+                title = "Hello, this is a slice!"
                 primaryAction = action
             }
         }
