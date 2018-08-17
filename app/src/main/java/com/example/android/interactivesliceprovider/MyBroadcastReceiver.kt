@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.android.interactivesliceprovider
 
 import android.app.PendingIntent
@@ -29,13 +28,13 @@ import com.example.android.interactivesliceprovider.util.buildUriWithAuthority
 
 class MyBroadcastReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, i: Intent) {
-        val action = i.action
+    override fun onReceive(context: Context, intent: Intent) {
+        val action = intent.action
         when (action) {
             InteractiveSliceProvider.ACTION_WIFI_CHANGED -> {
                 val wm = context.applicationContext
                     .getSystemService(Context.WIFI_SERVICE) as WifiManager
-                val newState = i.getBooleanExtra(EXTRA_TOGGLE_STATE, wm.isWifiEnabled)
+                val newState = intent.getBooleanExtra(EXTRA_TOGGLE_STATE, wm.isWifiEnabled)
                 wm.isWifiEnabled = newState
                 // Wait a bit for wifi to update (TODO: is there a better way to do this?)
                 val h = Handler()
@@ -45,14 +44,14 @@ class MyBroadcastReceiver : BroadcastReceiver() {
                 }, 1000)
             }
             InteractiveSliceProvider.ACTION_TOAST -> {
-                val message = i.extras!!.getString(
+                val message = intent.extras!!.getString(
                     InteractiveSliceProvider.EXTRA_TOAST_MESSAGE,
                     "no message"
                 )
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
             InteractiveSliceProvider.ACTION_TOAST_RANGE_VALUE -> {
-                val range = i.extras!!.getInt(EXTRA_RANGE_VALUE, 0)
+                val range = intent.extras!!.getInt(EXTRA_RANGE_VALUE, 0)
                 Toast.makeText(context, "value: $range", Toast.LENGTH_SHORT).show()
             }
         }

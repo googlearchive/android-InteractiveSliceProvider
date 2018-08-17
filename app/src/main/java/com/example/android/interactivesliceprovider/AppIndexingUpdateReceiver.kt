@@ -13,6 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.interactivesliceprovider.data.model
+package com.example.android.interactivesliceprovider
 
-data class AppIndexingMetadata(val url: String, val name: String, val keywords: List<String>)
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import com.google.firebase.appindexing.FirebaseAppIndex
+
+class AppIndexingUpdateReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (FirebaseAppIndex.ACTION_UPDATE_INDEX == intent?.action) {
+            // Schedule job to run in the background.
+            if (context != null) {
+                AppIndexingUpdateService.enqueueWork(context)
+            }
+        }
+    }
+}

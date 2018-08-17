@@ -81,7 +81,6 @@ class InteractiveSliceProvider : SliceProvider() {
         if (sliceUri == null || sliceUri.path == null) {
             return null
         }
-        val sliceBuilder = getSliceBuilder(sliceUri)
         return getSliceBuilder(sliceUri)?.apply { updateAppIndex() }?.buildSlice()
     }
 

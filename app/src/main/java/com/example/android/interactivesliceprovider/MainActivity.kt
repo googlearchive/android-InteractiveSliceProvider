@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.slice.SliceManager
@@ -29,13 +30,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Grants permission to all non-default slices.
+        // IMPORTANT NOTE: This will not be needed when the API is launched publicly. It is only
+        // required at the current time for the EAP.
+        grantNonDefaultSlicePermission()
+
+        // Grants permission for default slice.
         grantSlicePermissions(
-            Uri.parse("content://com.example.android.interactivesliceprovider/default")
+                Uri.parse("content://com.example.android.interactivesliceprovider/default")
         )
+
         setContentView(R.layout.activity_main)
     }
 
-    private fun grantSlicePermissions(uri: Uri) {
+    private fun grantSlicePermissions(uri: Uri, notifyIndexOfChange: Boolean = true) {
         // Grant permissions to AGSA
         SliceManager.getInstance(this).grantSlicePermission(
             "com.google.android.googlequicksearchbox",
@@ -46,22 +55,56 @@ class MainActivity : AppCompatActivity() {
             "com.google.android.gms",
             uri
         )
-        // Notify change. Ensure that it does not happen on every onCreate()
-        // calls as notify change triggers reindexing which can clear usage
-        // signals of your app and hence impact your app’s ranking. One way to
-        // do this is to use shared preferences.
-        val sharedPreferences = getSharedPreferences(
-            "SlicePermissionGranted", Context.MODE_PRIVATE
-        )
-        if (!sharedPreferences.getBoolean("PermissionStatus", false)) {
-            contentResolver.notifyChange(uri, null /* content observer */)
-            sharedPreferences.edit {
-                putBoolean("PermissionStatus", true)
+
+        if (notifyIndexOfChange) {
+            // Notify change. Ensure that it does not happen on every onCreate()
+            // calls as notify change triggers reindexing which can clear usage
+            // signals of your app and hence impact your app’s ranking. One way to
+            // do this is to use shared preferences.
+            val sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(applicationContext)
+
+            if (!sharedPreferences.getBoolean(PREF_GRANT_SLICE_PERMISSION, false)) {
+                contentResolver.notifyChange(uri, null /* content observer */)
+                sharedPreferences.edit {
+                    putBoolean(PREF_GRANT_SLICE_PERMISSION, true)
+                }
             }
         }
     }
 
+    /*
+     * Grants permissions for non-default URLs, so they can be shown in google search on device.
+     * IMPORTANT NOTE: As stated earlier, this will not be required soon (and not for launch), so
+     * you can assume you won't need to loop through all your non-default slice URIs for the launch.
+     */
+    private fun grantNonDefaultSlicePermission () {
+        for(nonDefaultUri in nonDefaultUris) {
+            grantSlicePermissions(
+                    Uri.parse(nonDefaultUri),
+                    false
+            )
+        }
+    }
+
     companion object {
+        private const val PREF_GRANT_SLICE_PERMISSION = "permission_slice_status"
+
+        private val nonDefaultUris = listOf(
+                "content://com.example.android.interactivesliceprovider/hello",
+                "content://com.example.android.interactivesliceprovider/wifi",
+                "content://com.example.android.interactivesliceprovider/note",
+                "content://com.example.android.interactivesliceprovider/ride",
+                "content://com.example.android.interactivesliceprovider/toggle",
+                "content://com.example.android.interactivesliceprovider/gallery",
+                "content://com.example.android.interactivesliceprovider/weather",
+                "content://com.example.android.interactivesliceprovider/reservation",
+                "content://com.example.android.interactivesliceprovider/loadlist",
+                "content://com.example.android.interactivesliceprovider/loadgrid",
+                "content://com.example.android.interactivesliceprovider/inputrange",
+                "content://com.example.android.interactivesliceprovider/range"
+        )
+
         fun getPendingIntent(context: Context): PendingIntent {
             val intent = Intent(context, MainActivity::class.java)
             return PendingIntent.getActivity(context, 0, intent, 0)
