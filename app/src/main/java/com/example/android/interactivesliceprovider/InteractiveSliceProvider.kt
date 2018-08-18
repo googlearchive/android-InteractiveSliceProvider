@@ -21,9 +21,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.util.Log
-import androidx.core.content.edit
 import androidx.slice.Slice
-import androidx.slice.SliceManager
 import androidx.slice.SliceProvider
 import com.example.android.interactivesliceprovider.Paths.DEFAULT
 import com.example.android.interactivesliceprovider.Paths.GALLERY
@@ -40,7 +38,6 @@ import com.example.android.interactivesliceprovider.Paths.WEATHER
 import com.example.android.interactivesliceprovider.Paths.WIFI
 import com.example.android.interactivesliceprovider.data.DataRepository
 import com.example.android.interactivesliceprovider.data.FakeDataSource
-import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 import com.example.android.interactivesliceprovider.slicebuilders.DefaultSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.GallerySliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.GridSliceBuilder
@@ -81,128 +78,63 @@ class InteractiveSliceProvider : SliceProvider() {
         if (sliceUri == null || sliceUri.path == null) {
             return null
         }
-        return getSliceBuilder(sliceUri)?.apply { updateAppIndex() }?.buildSlice()
+        return getSliceBuilder(sliceUri)?.buildSlice()
     }
 
     private fun getSliceBuilder(sliceUri: Uri) = when (sliceUri.path) {
         DEFAULT -> DefaultSliceBuilder(
                 context = context,
-                sliceUri = sliceUri,
-                appIndexingMetaData = AppIndexingMetadata(
-                        url = HOST + DEFAULT,
-                        name = "Default",
-                        keywords = listOf("default")
-                )
+                sliceUri = sliceUri
         )
         HELLO -> HelloSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + HELLO,
-                name = "Hello",
-                keywords = listOf("hello")
-            )
+            sliceUri = sliceUri
         )
         WIFI -> WifiSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + WIFI,
-                name = "Wifi",
-                keywords = listOf("wifi")
-            )
+            sliceUri = sliceUri
         )
         NOTE -> NoteSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + NOTE,
-                name = "Note",
-                keywords = listOf("note")
-            )
+            sliceUri = sliceUri
         )
         RIDE -> RideSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + RIDE,
-                name = "Ride",
-                keywords = listOf("ride")
-            )
+            sliceUri = sliceUri
         )
         TOGGLE -> ToggleSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + TOGGLE,
-                name = "Toggle",
-                keywords = listOf("toggle")
-            )
+            sliceUri = sliceUri
         )
         GALLERY -> GallerySliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + GALLERY,
-                name = "Gallery",
-                keywords = listOf("gallery")
-            )
+            sliceUri = sliceUri
         )
         WEATHER -> WeatherSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + WEATHER,
-                name = "Weather",
-                keywords = listOf("weather")
-            )
+            sliceUri = sliceUri
         )
         RESERVATION -> ReservationSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + RESERVATION,
-                name = "Reservation",
-                keywords = listOf("reservation")
-            )
+            sliceUri = sliceUri
         )
         LOAD_LIST -> ListSliceBuilder(
             context = context,
             sliceUri = sliceUri,
-            repo = repo,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + LOAD_LIST,
-                name = "Load List",
-                keywords = listOf("load", "list")
-            )
+            repo = repo
         )
         LOAD_GRID -> GridSliceBuilder(
             context = context,
             sliceUri = sliceUri,
-            repo = repo,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + LOAD_GRID,
-                name = "Load Grid",
-                keywords = listOf("load", "grid")
-            )
+            repo = repo
         )
         INPUT_RANGE -> InputRangeSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + INPUT_RANGE,
-                name = "Input Range",
-                keywords = listOf("input", "range")
-            )
+            sliceUri = sliceUri
         )
         RANGE -> RangeSliceBuilder(
             context = context,
-            sliceUri = sliceUri,
-            appIndexingMetaData = AppIndexingMetadata(
-                url = HOST + RANGE,
-                name = "Range",
-                keywords = listOf("range")
-            )
+            sliceUri = sliceUri
         )
         else -> {
             Log.e(TAG, "Unknown URI: $sliceUri")

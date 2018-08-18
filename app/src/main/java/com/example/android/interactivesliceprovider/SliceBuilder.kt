@@ -18,23 +18,7 @@ package com.example.android.interactivesliceprovider
 
 import android.net.Uri
 import androidx.slice.Slice
-import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
-import com.google.firebase.appindexing.FirebaseAppIndex
-import com.google.firebase.appindexing.Indexable
 
-abstract class SliceBuilder(val sliceUri: Uri, val appIndexingMetadata: AppIndexingMetadata) {
+abstract class SliceBuilder(val sliceUri: Uri) {
     abstract fun buildSlice(): Slice
-    fun updateAppIndex() {
-        FirebaseAppIndex.getInstance()
-            .update(
-                Indexable.Builder()
-                    .setUrl(appIndexingMetadata.url)
-                    .setName(appIndexingMetadata.name)
-                    .setKeywords(*appIndexingMetadata.keywords.toTypedArray())
-                    .setMetadata(
-                        Indexable.Metadata.Builder().setSliceUri(sliceUri)
-                    )
-                    .build()
-            )
-    }
 }

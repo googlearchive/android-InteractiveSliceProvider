@@ -25,13 +25,11 @@ import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.MainActivity
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceBuilder
-import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class DefaultSliceBuilder(
         val context: Context,
-        sliceUri: Uri,
-        appIndexingMetaData: AppIndexingMetadata
-) : SliceBuilder(sliceUri, appIndexingMetaData) {
+        sliceUri: Uri
+) : SliceBuilder(sliceUri) {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         val action = SliceAction.create(

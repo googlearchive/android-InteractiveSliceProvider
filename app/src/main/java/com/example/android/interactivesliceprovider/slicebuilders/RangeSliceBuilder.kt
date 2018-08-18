@@ -28,13 +28,11 @@ import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceBuilder
-import com.example.android.interactivesliceprovider.data.model.AppIndexingMetadata
 
 class RangeSliceBuilder(
     val context: Context,
-    sliceUri: Uri,
-    appIndexingMetaData: AppIndexingMetadata
-) : SliceBuilder(sliceUri, appIndexingMetaData) {
+    sliceUri: Uri
+) : SliceBuilder(sliceUri) {
 
     override fun buildSlice(): Slice {
         val icon = IconCompat.createWithResource(context, R.drawable.ic_star_on)
