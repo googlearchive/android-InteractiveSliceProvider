@@ -25,7 +25,7 @@ import androidx.slice.builders.SliceAction
 import androidx.slice.builders.inputRange
 import androidx.slice.builders.list
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceBuilder
 
@@ -44,14 +44,14 @@ class InputRangeSliceBuilder(
                 min = 0
                 thumb = icon
                 inputAction =
-                        MyBroadcastReceiver.getIntent(
+                        SliceActionsBroadcastReceiver.getIntent(
                             context,
                             InteractiveSliceProvider.ACTION_TOAST_RANGE_VALUE, null
                         )
                 max = 10
                 value = 8
                 primaryAction = SliceAction.create(
-                    MyBroadcastReceiver.getIntent(
+                    SliceActionsBroadcastReceiver.getIntent(
                         context, InteractiveSliceProvider.ACTION_TOAST, "open star rating"
                     ),
                     icon, ListBuilder.ICON_IMAGE, "Rate"

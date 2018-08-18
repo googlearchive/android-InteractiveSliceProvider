@@ -26,7 +26,7 @@ import android.os.Handler
 import android.widget.Toast
 import com.example.android.interactivesliceprovider.util.buildUriWithAuthority
 
-class MyBroadcastReceiver : BroadcastReceiver() {
+class SliceActionsBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val action = intent.action
@@ -60,7 +60,7 @@ class MyBroadcastReceiver : BroadcastReceiver() {
     companion object {
         fun getIntent(context: Context, action: String, message: String?): PendingIntent {
             val intent = Intent(action)
-            intent.setClass(context, MyBroadcastReceiver::class.java)
+            intent.setClass(context, SliceActionsBroadcastReceiver::class.java)
             // Ensure a new PendingIntent is created for each message.
             var requestCode = 0
             if (message != null) {

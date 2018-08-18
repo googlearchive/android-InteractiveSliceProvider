@@ -24,7 +24,7 @@ import androidx.slice.builders.SliceAction
 import androidx.slice.builders.list
 import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
 
@@ -38,7 +38,7 @@ class NoteSliceBuilder(
         row { setTitle("Create new note") }
         addAction(
             SliceAction.create(
-                MyBroadcastReceiver.getIntent(
+                SliceActionsBroadcastReceiver.getIntent(
                     context, InteractiveSliceProvider.ACTION_TOAST, "create note"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_create),
@@ -48,7 +48,7 @@ class NoteSliceBuilder(
         )
         addAction(
             SliceAction.create(
-                MyBroadcastReceiver.getIntent(
+                SliceActionsBroadcastReceiver.getIntent(
                     context, InteractiveSliceProvider.ACTION_TOAST, "voice note"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_voice),

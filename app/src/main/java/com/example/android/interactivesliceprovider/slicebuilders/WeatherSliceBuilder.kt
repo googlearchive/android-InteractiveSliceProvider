@@ -26,7 +26,7 @@ import androidx.slice.builders.cell
 import androidx.slice.builders.gridRow
 import androidx.slice.builders.list
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
 
@@ -37,7 +37,7 @@ class WeatherSliceBuilder(
 
     override fun buildSlice(): Slice {
         val action = SliceAction.create(
-            MyBroadcastReceiver.getIntent(
+            SliceActionsBroadcastReceiver.getIntent(
                 context,
                 InteractiveSliceProvider.ACTION_TOAST,
                 "open weather app"

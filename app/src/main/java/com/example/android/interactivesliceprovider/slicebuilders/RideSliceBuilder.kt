@@ -29,7 +29,7 @@ import androidx.slice.builders.header
 import androidx.slice.builders.list
 import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
 import java.util.concurrent.TimeUnit
@@ -58,7 +58,7 @@ class RideSliceBuilder(
             )
         }
         val action = SliceAction.create(
-            MyBroadcastReceiver.getIntent(
+            SliceActionsBroadcastReceiver.getIntent(
                 context, InteractiveSliceProvider.ACTION_TOAST, "get ride"
             ),
             IconCompat.createWithResource(context, drawable.ic_car),
@@ -78,7 +78,7 @@ class RideSliceBuilder(
                 subtitle = workSubtitle
                 addEndItem(
                     SliceAction.create(
-                        MyBroadcastReceiver.getIntent(
+                        SliceActionsBroadcastReceiver.getIntent(
                             context, InteractiveSliceProvider.ACTION_TOAST, "work"
                         ),
                         IconCompat.createWithResource(context, drawable.ic_work),
@@ -92,7 +92,7 @@ class RideSliceBuilder(
                 subtitle = homeSubtitle
                 addEndItem(
                     SliceAction.create(
-                        MyBroadcastReceiver.getIntent(
+                        SliceActionsBroadcastReceiver.getIntent(
                             context, InteractiveSliceProvider.ACTION_TOAST, "home"
                         ),
                         IconCompat.createWithResource(context, drawable.ic_home),

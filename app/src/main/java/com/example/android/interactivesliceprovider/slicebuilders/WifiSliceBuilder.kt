@@ -29,7 +29,7 @@ import androidx.slice.builders.list
 import androidx.slice.builders.row
 import androidx.slice.builders.seeMoreRow
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
@@ -80,7 +80,7 @@ class WifiSliceBuilder(
             }
             addAction(
                 SliceAction.createToggle(
-                    MyBroadcastReceiver.getIntent(
+                    SliceActionsBroadcastReceiver.getIntent(
                         context, InteractiveSliceProvider.ACTION_WIFI_CHANGED, null
                     ),
                     toggleCDString, finalWifiEnabled
@@ -111,7 +111,7 @@ class WifiSliceBuilder(
                         if (locked) "Open wifi password dialog" else "Connect to $networkName"
                     setPrimaryAction(
                         SliceAction.create(
-                            MyBroadcastReceiver.getIntent(
+                            SliceActionsBroadcastReceiver.getIntent(
                                 context, InteractiveSliceProvider.ACTION_TOAST, message
                             ),
                             icon,

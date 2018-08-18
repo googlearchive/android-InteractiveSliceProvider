@@ -5,13 +5,9 @@ import android.net.Uri
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
-import androidx.slice.builders.cell
-import androidx.slice.builders.gridRow
 import androidx.slice.builders.list
 import androidx.slice.builders.row
-import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.MainActivity
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
 

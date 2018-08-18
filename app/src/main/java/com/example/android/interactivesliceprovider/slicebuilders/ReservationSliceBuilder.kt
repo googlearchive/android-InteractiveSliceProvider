@@ -26,7 +26,7 @@ import androidx.slice.builders.gridRow
 import androidx.slice.builders.header
 import androidx.slice.builders.list
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
-import com.example.android.interactivesliceprovider.MyBroadcastReceiver
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
@@ -43,7 +43,7 @@ class ReservationSliceBuilder(
         }
         addAction(
             SliceAction.create(
-                MyBroadcastReceiver.getIntent(
+                SliceActionsBroadcastReceiver.getIntent(
                     context,
                     InteractiveSliceProvider.ACTION_TOAST, "show location on map"
                 ),
@@ -54,7 +54,7 @@ class ReservationSliceBuilder(
         )
         addAction(
             SliceAction.create(
-                MyBroadcastReceiver.getIntent(
+                SliceActionsBroadcastReceiver.getIntent(
                     context, InteractiveSliceProvider.ACTION_TOAST, "contact host"
                 ),
                 IconCompat.createWithResource(context, drawable.ic_text),
