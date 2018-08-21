@@ -15,4 +15,8 @@
   -->
 <resources>
     <string name="app_name">InteractiveSliceProvider</string>
+
+    <!-- Default Slice URI -->
+    <string name="default_slice_uri">content://com.example.android.interactivesliceprovider/default</string>
+
 </resources>

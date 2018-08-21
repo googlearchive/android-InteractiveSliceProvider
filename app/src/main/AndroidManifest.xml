@@ -18,7 +18,7 @@
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.metadata.SLICE_URI"
-                android:value="content://com.example.android.interactivesliceprovider/default" />
+                android:value="@string/default_slice_uri" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

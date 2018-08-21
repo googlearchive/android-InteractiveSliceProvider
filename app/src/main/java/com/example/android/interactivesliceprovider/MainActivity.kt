@@ -24,7 +24,10 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.net.toUri
 import androidx.slice.SliceManager
+
+import java.net.URLDecoder
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,10 +39,16 @@ class MainActivity : AppCompatActivity() {
         // required at the current time for the EAP.
         grantNonDefaultSlicePermission()
 
+
+        val defaultUriEncoded = getResources().getString(R.string.default_slice_uri)
+
+        // Decode for special characters that may appear in URI. Review Android documentation on
+        // special characters for more information:
+        // https://developer.android.com/guide/topics/resources/string-resource#FormattingAndStyling
+        val defaultUriDecoded = URLDecoder.decode(defaultUriEncoded, "UTF-8")
+
         // Grants permission for default slice.
-        grantSlicePermissions(
-                Uri.parse("content://com.example.android.interactivesliceprovider/default")
-        )
+        grantSlicePermissions(defaultUriDecoded.toUri())
 
         setContentView(R.layout.activity_main)
     }
