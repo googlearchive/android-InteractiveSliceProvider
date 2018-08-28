@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.interactivesliceprovider">
@@ -57,13 +72,22 @@
             android:name=".AppIndexingUpdateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <!-- Activities associated with each slice. -->
+        <!--
+        Activities associated with each slice. Firebase App Indexing requires an indexable slice
+        to be associated with an Activity.
+        -->
         <activity android:name=".sliceactivities.GallerySliceActivity" />
         <activity android:name=".sliceactivities.GridSliceActivity" />
         <activity android:name=".sliceactivities.HelloSliceActivity" />
         <activity android:name=".sliceactivities.InputRangeSliceActivity" />
         <activity android:name=".sliceactivities.ListSliceActivity" />
         <activity android:name=".sliceactivities.NoteSliceActivity" />
+        <activity android:name=".sliceactivities.RangeSliceActivity" />
+        <activity android:name=".sliceactivities.ReservationSliceActivity" />
+        <activity android:name=".sliceactivities.RideSliceActivity" />
+        <activity android:name=".sliceactivities.ToggleSliceActivity" />
+        <activity android:name=".sliceactivities.WeatherSliceActivity" />
+        <activity android:name=".sliceactivities.WifiSliceActivity" />
     </application>
 
 </manifest>
