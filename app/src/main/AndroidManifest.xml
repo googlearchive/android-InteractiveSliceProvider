@@ -7,18 +7,18 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
-        tools:ignore="GoogleAppIndexingWarning"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.metadata.SLICE_URI"
                 android:value="@string/default_slice_uri" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,6 +32,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="androidx.intent.SLICE_ACTION" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.app.slice.category.SLICE" />
@@ -43,7 +44,8 @@
             </intent-filter>
         </provider>
 
-        <receiver android:name=".AppIndexingUpdateReceiver"
+        <receiver
+            android:name=".AppIndexingUpdateReceiver"
             android:exported="true"
             android:permission="com.google.android.gms.permission.APPINDEXING">
             <intent-filter>
@@ -51,8 +53,17 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".AppIndexingUpdateService"
+        <service
+            android:name=".AppIndexingUpdateService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <!-- Activities associated with each slice. -->
+        <activity android:name=".sliceactivities.GallerySliceActivity" />
+        <activity android:name=".sliceactivities.GridSliceActivity" />
+        <activity android:name=".sliceactivities.HelloSliceActivity" />
+        <activity android:name=".sliceactivities.InputRangeSliceActivity" />
+        <activity android:name=".sliceactivities.ListSliceActivity" />
+        <activity android:name=".sliceactivities.NoteSliceActivity" />
     </application>
+
 </manifest>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2018 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,4 +20,17 @@
     <!-- Default Slice URI -->
     <string name="default_slice_uri">content://com.example.android.interactivesliceprovider/default</string>
 
+    <!-- Body text for each Activity associated with a slice. -->
+    <string name="gallery_slice_activity_body">Gallery Slice Activity</string>
+    <string name="grid_slice_activity_body">Grid Slice Activity</string>
+    <string name="hello_slice_activity_body">Hello Slice Activity</string>
+    <string name="input_range_slice_activity_body">Input Range Slice Activity</string>
+    <string name="list_slice_activity_body">List Slice Activity</string>
+    <string name="note_slice_activity_body">Note Slice Activity</string>
+    <string name="range_slice_activity_body">Range Slice Activity</string>
+    <string name="reservation_slice_activity_body">Reservation Slice Activity</string>
+    <string name="ride_slice_activity_body">Ride Slice Activity</string>
+    <string name="toggle_slice_activity_body">Toggle Slice Activity</string>
+    <string name="weather_slice_activity_body">Weather Slice Activity</string>
+    <string name="wifi_slice_activity_body">Wifi Slice Activity</string>
 </resources>
