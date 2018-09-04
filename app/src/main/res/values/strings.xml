@@ -19,6 +19,17 @@
     <!-- Default Slice URI -->
     <string name="default_slice_uri">content://com.example.android.interactivesliceprovider/default</string>
 
+    <string name="host_slice_uri">content://com.example.android.interactivesliceprovider</string>
+    <string name="host_slice_url">interactivesliceprovider.android.example.com</string>
+    <string name="scheme_slice_url">https</string>
+
+    <string name="default_slice_path">/default</string>
+    <string name="catch_all_slice_path">/</string>
+
+    <!-- Body text for each Activity associated with a slice. -->
+    <string name="main_activity_body">Launching Activity (default).</string>
+    <string name="main_activity_button">Index Slices</string>
+
     <!-- Body text for each Activity associated with a slice. -->
     <string name="gallery_slice_activity_body">Gallery Slice Activity</string>
     <string name="grid_slice_activity_body">Grid Slice Activity</string>

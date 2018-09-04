@@ -29,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.metadata.SLICE_URI"
@@ -36,8 +37,16 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/scheme_slice_url"
+                    android:host="@string/host_slice_url"
+                    android:pathPrefix="@string/default_slice_path" />
             </intent-filter>
         </activity>
 
@@ -53,9 +62,9 @@
                 <category android:name="android.app.slice.category.SLICE" />
 
                 <data
-                    android:host="interactivesliceprovider.android.example.com"
-                    android:pathPrefix="/"
-                    android:scheme="https" />
+                    android:host="@string/host_slice_url"
+                    android:pathPrefix="@string/catch_all_slice_path"
+                    android:scheme="@string/scheme_slice_url" />
             </intent-filter>
         </provider>
 

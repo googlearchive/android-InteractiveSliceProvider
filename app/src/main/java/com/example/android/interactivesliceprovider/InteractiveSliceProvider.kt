@@ -71,13 +71,22 @@ class InteractiveSliceProvider : SliceProvider() {
     }
 
     override fun onMapIntentToUri(intent: Intent): Uri {
-        return context.buildUriWithAuthority(intent.data.path.replace("/", ""))
+
+        val intentPath = intent.data.path
+        val uri = context.buildUriWithAuthority(intent.data.path.replace("/", ""))
+
+        Log.d(TAG, "onMapIntentToUri(): \nintentPath: $intentPath \nuri:$uri")
+
+        return uri
     }
 
     override fun onBindSlice(sliceUri: Uri?): Slice? {
         if (sliceUri == null || sliceUri.path == null) {
             return null
         }
+
+        Log.d(TAG, "onBindSlice(): $sliceUri")
+
         return getSliceBuilder(sliceUri)?.buildSlice()
     }
 
@@ -148,7 +157,7 @@ class InteractiveSliceProvider : SliceProvider() {
         when (sliceUri?.path) {
             LOAD_LIST -> repo.registerListSliceDataCallback(contentNotifiers[sliceUri])
             LOAD_GRID -> repo.registerGridSliceDataCallback(contentNotifiers[sliceUri])
-            else -> Log.e(TAG, "Unknown URI: $sliceUri")
+            else -> Log.d(TAG, "No pinning actions for URI: $sliceUri")
         }
     }
 
@@ -158,7 +167,7 @@ class InteractiveSliceProvider : SliceProvider() {
         when (sliceUri?.path) {
             LOAD_LIST -> repo.unregisterListSliceDataCallbacks()
             LOAD_GRID -> repo.unregisterGridSliceDataCallbacks()
-            else -> Log.e(TAG, "Unknown URI: $sliceUri")
+            else -> Log.d(TAG, "No unpinning actions for URI: $sliceUri")
         }
     }
 
@@ -176,7 +185,7 @@ class InteractiveSliceProvider : SliceProvider() {
     }
 }
 
-const val HOST = "https://interactivesliceprovider.android.example.com"
+const val HOST_URL = "https://interactivesliceprovider.android.example.com"
 
 object Paths {
     const val DEFAULT = "/default"

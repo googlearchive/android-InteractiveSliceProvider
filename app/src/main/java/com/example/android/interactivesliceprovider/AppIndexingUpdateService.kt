@@ -59,8 +59,8 @@ class AppIndexingUpdateService : JobIntentService() {
         }
 
         firebaseAppIndex.update(*appIndexDataList.toTypedArray())
-                .addOnCompleteListener { Log.v(TAG, "App Indexing complete") }
-                .addOnFailureListener { Log.v(TAG, "App Indexing failed: $it") }
+                .addOnSuccessListener { Log.d(TAG, "App Indexing complete") }
+                .addOnFailureListener { Log.d(TAG, "App Indexing failed: $it") }
     }
 
     /*
@@ -73,69 +73,69 @@ class AppIndexingUpdateService : JobIntentService() {
     private fun getIndexableData(): List<AppIndexingMetadata> {
         return listOf(
                 AppIndexingMetadata(
-                        url = HOST + Paths.DEFAULT,
+                        url = HOST_URL + Paths.DEFAULT,
                         name = "Default",
-                        keywords = listOf("default")
+                        keywords = listOf("default", "defaultest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.HELLO,
+                        url = HOST_URL + Paths.HELLO,
                         name = "Hello",
-                        keywords = listOf("hello")
+                        keywords = listOf("hello", "hellotest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.WIFI,
+                        url = HOST_URL + Paths.WIFI,
                         name = "Wifi",
-                        keywords = listOf("wifi")
+                        keywords = listOf("wifi", "wifitest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.NOTE,
+                        url = HOST_URL + Paths.NOTE,
                         name = "Note",
-                        keywords = listOf("note")
+                        keywords = listOf("note", "notetest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.RIDE,
+                        url = HOST_URL + Paths.RIDE,
                         name = "Ride",
-                        keywords = listOf("ride")
+                        keywords = listOf("ride", "ridetest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.TOGGLE,
+                        url = HOST_URL + Paths.TOGGLE,
                         name = "Toggle",
-                        keywords = listOf("toggle")
+                        keywords = listOf("toggle", "toggletest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.GALLERY,
+                        url = HOST_URL + Paths.GALLERY,
                         name = "Gallery",
-                        keywords = listOf("gallery")
+                        keywords = listOf("gallery", "gallerytest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.WEATHER,
+                        url = HOST_URL + Paths.WEATHER,
                         name = "Weather",
-                        keywords = listOf("weather")
+                        keywords = listOf("weather", "weathertest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.RESERVATION,
+                        url = HOST_URL + Paths.RESERVATION,
                         name = "Reservation",
-                        keywords = listOf("reservation")
+                        keywords = listOf("reservation", "reservationtest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.LOAD_LIST,
+                        url = HOST_URL + Paths.LOAD_LIST,
                         name = "Load List",
-                        keywords = listOf("load", "list")
+                        keywords = listOf("load", "list", "loadlist", "loadlisttest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.LOAD_GRID,
+                        url = HOST_URL + Paths.LOAD_GRID,
                         name = "Load Grid",
-                        keywords = listOf("load", "grid")
+                        keywords = listOf("load", "grid", "loadgrid", "loadgridtest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.INPUT_RANGE,
+                        url = HOST_URL + Paths.INPUT_RANGE,
                         name = "Input Range",
-                        keywords = listOf("input", "range")
+                        keywords = listOf("input", "range", "inputrange", "inputrangetest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST + Paths.RANGE,
+                        url = HOST_URL + Paths.RANGE,
                         name = "Range",
-                        keywords = listOf("range")
+                        keywords = listOf("range", "rangetest1234")
                 )
         )
     }
