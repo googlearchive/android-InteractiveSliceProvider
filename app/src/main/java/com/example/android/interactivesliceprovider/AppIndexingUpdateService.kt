@@ -71,69 +71,98 @@ class AppIndexingUpdateService : JobIntentService() {
      *      keywords = wifi
      */
     private fun getIndexableData(): List<AppIndexingMetadata> {
+
+        // Retrieve data for each Indexable type (slices for this sample).
+
+        // TODO: Move all data for Indexables to the data/domain layer.
+
+        // The resource string for scheme doesn't include "://" because android:scheme for the
+        // data element in the manifest doesn't allow it. Therefore, we must add it here to create
+        // the complete URL.
+        val schemeAndHost = "${application.resources.getString(R.string.scheme_slice_url)}://" +
+                "${applicationContext.resources.getString(R.string.host_slice_url)}"
+
+        val default_path = application.resources.getString(R.string.default_slice_path)
+
+        val hello_path = application.resources.getString(R.string.hello_slice_path)
+        val wifi_path = application.resources.getString(R.string.wifi_slice_path)
+        val note_path = application.resources.getString(R.string.note_slice_path)
+
+        val ride_path = application.resources.getString(R.string.ride_slice_path)
+        val toggle_path = application.resources.getString(R.string.toggle_slice_path)
+        val gallery_path = application.resources.getString(R.string.gallery_slice_path)
+
+        val weather_path = application.resources.getString(R.string.weather_slice_path)
+        val reservation_path = application.resources.getString(R.string.reservation_slice_path)
+        val load_list_path = application.resources.getString(R.string.list_slice_path)
+
+        val load_grid_path = application.resources.getString(R.string.grid_slice_path)
+        val input_range_path = application.resources.getString(R.string.input_slice_path)
+        val range_path = application.resources.getString(R.string.range_slice_path)
+
         return listOf(
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.DEFAULT,
+                        url = schemeAndHost + default_path,
                         name = "Default",
                         keywords = listOf("default", "defaultest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.HELLO,
+                        url = schemeAndHost + hello_path,
                         name = "Hello",
                         keywords = listOf("hello", "hellotest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.WIFI,
+                        url = schemeAndHost + wifi_path,
                         name = "Wifi",
                         keywords = listOf("wifi", "wifitest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.NOTE,
+                        url = schemeAndHost + note_path,
                         name = "Note",
                         keywords = listOf("note", "notetest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.RIDE,
+                        url = schemeAndHost + ride_path,
                         name = "Ride",
                         keywords = listOf("ride", "ridetest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.TOGGLE,
+                        url = schemeAndHost + toggle_path,
                         name = "Toggle",
                         keywords = listOf("toggle", "toggletest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.GALLERY,
+                        url = schemeAndHost + gallery_path,
                         name = "Gallery",
                         keywords = listOf("gallery", "gallerytest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.WEATHER,
+                        url = schemeAndHost + weather_path,
                         name = "Weather",
                         keywords = listOf("weather", "weathertest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.RESERVATION,
+                        url = schemeAndHost + reservation_path,
                         name = "Reservation",
                         keywords = listOf("reservation", "reservationtest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.LOAD_LIST,
+                        url = schemeAndHost + load_list_path,
                         name = "Load List",
                         keywords = listOf("load", "list", "loadlist", "loadlisttest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.LOAD_GRID,
+                        url = schemeAndHost + load_grid_path,
                         name = "Load Grid",
                         keywords = listOf("load", "grid", "loadgrid", "loadgridtest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.INPUT_RANGE,
+                        url = schemeAndHost + input_range_path,
                         name = "Input Range",
                         keywords = listOf("input", "range", "inputrange", "inputrangetest1234")
                 ),
                 AppIndexingMetadata(
-                        url = HOST_URL + Paths.RANGE,
+                        url = schemeAndHost + range_path,
                         name = "Range",
                         keywords = listOf("range", "rangetest1234")
                 )

@@ -23,19 +23,6 @@ import android.os.Handler
 import android.util.Log
 import androidx.slice.Slice
 import androidx.slice.SliceProvider
-import com.example.android.interactivesliceprovider.Paths.DEFAULT
-import com.example.android.interactivesliceprovider.Paths.GALLERY
-import com.example.android.interactivesliceprovider.Paths.HELLO
-import com.example.android.interactivesliceprovider.Paths.INPUT_RANGE
-import com.example.android.interactivesliceprovider.Paths.LOAD_GRID
-import com.example.android.interactivesliceprovider.Paths.LOAD_LIST
-import com.example.android.interactivesliceprovider.Paths.NOTE
-import com.example.android.interactivesliceprovider.Paths.RANGE
-import com.example.android.interactivesliceprovider.Paths.RESERVATION
-import com.example.android.interactivesliceprovider.Paths.RIDE
-import com.example.android.interactivesliceprovider.Paths.TOGGLE
-import com.example.android.interactivesliceprovider.Paths.WEATHER
-import com.example.android.interactivesliceprovider.Paths.WIFI
 import com.example.android.interactivesliceprovider.data.DataRepository
 import com.example.android.interactivesliceprovider.data.FakeDataSource
 import com.example.android.interactivesliceprovider.slicebuilders.DefaultSliceBuilder
@@ -62,11 +49,52 @@ class InteractiveSliceProvider : SliceProvider() {
     private lateinit var repo: DataRepository
     private lateinit var contentNotifiers: LazyFunctionMap<Uri, Unit>
 
+    private lateinit var hostNameUrl: String
+
+    private lateinit var defaultPath: String
+    private lateinit var helloPath: String
+    private lateinit var wifiPath: String
+    private lateinit var notePath: String
+    private lateinit var ridePath: String
+    private lateinit var togglePath: String
+    private lateinit var galleryPath: String
+    private lateinit var weatherPath: String
+    private lateinit var reservationPath: String
+    private lateinit var loadListPath: String
+    private lateinit var loadGridPath: String
+    private lateinit var inputRangePath: String
+    private lateinit var rangePath: String
+
     override fun onCreateSliceProvider(): Boolean {
+
+        val contextNonNull  = context ?: return false
+
         repo = DataRepository(FakeDataSource(Handler()))
         contentNotifiers = LazyFunctionMap {
-            context.contentResolver.notifyChange(it, null)
+            contextNonNull.contentResolver.notifyChange(it, null)
         }
+
+        // Initialize Slice URL and all possible slice paths.
+        hostNameUrl = contextNonNull.resources.getString(R.string.host_slice_url)
+
+        defaultPath = contextNonNull.resources.getString(R.string.default_slice_path)
+
+        helloPath = contextNonNull.resources.getString(R.string.hello_slice_path)
+        wifiPath = contextNonNull.resources.getString(R.string.wifi_slice_path)
+        notePath = contextNonNull.resources.getString(R.string.note_slice_path)
+
+        ridePath = contextNonNull.resources.getString(R.string.ride_slice_path)
+        togglePath = contextNonNull.resources.getString(R.string.toggle_slice_path)
+        galleryPath = contextNonNull.resources.getString(R.string.gallery_slice_path)
+
+        weatherPath = contextNonNull.resources.getString(R.string.weather_slice_path)
+        reservationPath = contextNonNull.resources.getString(R.string.reservation_slice_path)
+        loadListPath = contextNonNull.resources.getString(R.string.list_slice_path)
+
+        loadGridPath = contextNonNull.resources.getString(R.string.grid_slice_path)
+        inputRangePath = contextNonNull.resources.getString(R.string.input_slice_path)
+        rangePath = contextNonNull.resources.getString(R.string.range_slice_path)
+
         return true
     }
 
@@ -91,57 +119,57 @@ class InteractiveSliceProvider : SliceProvider() {
     }
 
     private fun getSliceBuilder(sliceUri: Uri) = when (sliceUri.path) {
-        DEFAULT -> DefaultSliceBuilder(
+        defaultPath -> DefaultSliceBuilder(
                 context = context,
                 sliceUri = sliceUri
         )
-        HELLO -> HelloSliceBuilder(
+        helloPath -> HelloSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        WIFI -> WifiSliceBuilder(
+        wifiPath -> WifiSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        NOTE -> NoteSliceBuilder(
+        notePath -> NoteSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        RIDE -> RideSliceBuilder(
+        ridePath -> RideSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        TOGGLE -> ToggleSliceBuilder(
+        togglePath -> ToggleSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        GALLERY -> GallerySliceBuilder(
+        galleryPath -> GallerySliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        WEATHER -> WeatherSliceBuilder(
+        weatherPath -> WeatherSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        RESERVATION -> ReservationSliceBuilder(
+        reservationPath -> ReservationSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        LOAD_LIST -> ListSliceBuilder(
+        loadListPath -> ListSliceBuilder(
             context = context,
             sliceUri = sliceUri,
             repo = repo
         )
-        LOAD_GRID -> GridSliceBuilder(
+        loadGridPath -> GridSliceBuilder(
             context = context,
             sliceUri = sliceUri,
             repo = repo
         )
-        INPUT_RANGE -> InputRangeSliceBuilder(
+        inputRangePath -> InputRangeSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
-        RANGE -> RangeSliceBuilder(
+        rangePath -> RangeSliceBuilder(
             context = context,
             sliceUri = sliceUri
         )
@@ -155,8 +183,8 @@ class InteractiveSliceProvider : SliceProvider() {
         super.onSlicePinned(sliceUri)
         Log.d(TAG, "onSlicePinned - ${sliceUri?.path}")
         when (sliceUri?.path) {
-            LOAD_LIST -> repo.registerListSliceDataCallback(contentNotifiers[sliceUri])
-            LOAD_GRID -> repo.registerGridSliceDataCallback(contentNotifiers[sliceUri])
+            loadListPath -> repo.registerListSliceDataCallback(contentNotifiers[sliceUri])
+            loadGridPath -> repo.registerGridSliceDataCallback(contentNotifiers[sliceUri])
             else -> Log.d(TAG, "No pinning actions for URI: $sliceUri")
         }
     }
@@ -165,14 +193,15 @@ class InteractiveSliceProvider : SliceProvider() {
         super.onSliceUnpinned(sliceUri)
         Log.d(TAG, "onSliceUnpinned - ${sliceUri?.path}")
         when (sliceUri?.path) {
-            LOAD_LIST -> repo.unregisterListSliceDataCallbacks()
-            LOAD_GRID -> repo.unregisterGridSliceDataCallbacks()
+            loadListPath -> repo.unregisterListSliceDataCallbacks()
+            loadGridPath -> repo.unregisterGridSliceDataCallbacks()
             else -> Log.d(TAG, "No unpinning actions for URI: $sliceUri")
         }
     }
 
     companion object {
         const val TAG = "SliceProvider"
+
         const val ACTION_WIFI_CHANGED = "com.example.androidx.slice.action.WIFI_CHANGED"
         const val ACTION_TOAST = "com.example.androidx.slice.action.TOAST"
         const val EXTRA_TOAST_MESSAGE = "com.example.androidx.extra.TOAST_MESSAGE"
@@ -183,22 +212,4 @@ class InteractiveSliceProvider : SliceProvider() {
             return PendingIntent.getActivity(context, 0, intent, 0)
         }
     }
-}
-
-const val HOST_URL = "https://interactivesliceprovider.android.example.com"
-
-object Paths {
-    const val DEFAULT = "/default"
-    const val HELLO = "/hello"
-    const val WIFI = "/wifi"
-    const val NOTE = "/note"
-    const val RIDE = "/ride"
-    const val TOGGLE = "/toggle"
-    const val GALLERY = "/gallery"
-    const val WEATHER = "/weather"
-    const val RESERVATION = "/reservation"
-    const val LOAD_LIST = "/loadlist"
-    const val LOAD_GRID = "/loadgrid"
-    const val INPUT_RANGE = "/inputrange"
-    const val RANGE = "/range"
 }

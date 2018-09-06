@@ -54,6 +54,7 @@
             android:name=".InteractiveSliceProvider"
             android:authorities="com.example.android.interactivesliceprovider"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="androidx.intent.SLICE_ACTION" />
 

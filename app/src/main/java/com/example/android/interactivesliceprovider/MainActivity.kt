@@ -90,6 +90,22 @@ class MainActivity : AppCompatActivity() {
      * you can assume you won't need to loop through all your non-default slice URIs for the launch.
      */
     private fun grantNonDefaultSlicePermission () {
+
+        val nonDefaultUris = listOf(
+                applicationContext.resources.getString(R.string.hello_slice_uri),
+                applicationContext.resources.getString(R.string.wifi_slice_uri),
+                applicationContext.resources.getString(R.string.note_slice_uri),
+                applicationContext.resources.getString(R.string.ride_slice_uri),
+                applicationContext.resources.getString(R.string.toggle_slice_uri),
+                applicationContext.resources.getString(R.string.gallery_slice_uri),
+                applicationContext.resources.getString(R.string.weather_slice_uri),
+                applicationContext.resources.getString(R.string.reservation_slice_uri),
+                applicationContext.resources.getString(R.string.list_slice_uri),
+                applicationContext.resources.getString(R.string.grid_slice_uri),
+                applicationContext.resources.getString(R.string.input_slice_uri),
+                applicationContext.resources.getString(R.string.range_slice_uri)
+        )
+
         for(nonDefaultUri in nonDefaultUris) {
             grantSlicePermissions(
                     Uri.parse(nonDefaultUri),
@@ -106,21 +122,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val PREF_GRANT_SLICE_PERMISSION = "permission_slice_status"
-
-        private val nonDefaultUris = listOf(
-                "content://com.example.android.interactivesliceprovider/hello",
-                "content://com.example.android.interactivesliceprovider/wifi",
-                "content://com.example.android.interactivesliceprovider/note",
-                "content://com.example.android.interactivesliceprovider/ride",
-                "content://com.example.android.interactivesliceprovider/toggle",
-                "content://com.example.android.interactivesliceprovider/gallery",
-                "content://com.example.android.interactivesliceprovider/weather",
-                "content://com.example.android.interactivesliceprovider/reservation",
-                "content://com.example.android.interactivesliceprovider/loadlist",
-                "content://com.example.android.interactivesliceprovider/loadgrid",
-                "content://com.example.android.interactivesliceprovider/inputrange",
-                "content://com.example.android.interactivesliceprovider/range"
-        )
 
         fun getPendingIntent(context: Context): PendingIntent {
             val intent = Intent(context, MainActivity::class.java)
