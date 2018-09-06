@@ -124,54 +124,54 @@ class InteractiveSliceProvider : SliceProvider() {
                 sliceUri = sliceUri
         )
         helloPath -> HelloSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         wifiPath -> WifiSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         notePath -> NoteSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         ridePath -> RideSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         togglePath -> ToggleSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         galleryPath -> GallerySliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         weatherPath -> WeatherSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         reservationPath -> ReservationSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         loadListPath -> ListSliceBuilder(
-            context = context,
-            sliceUri = sliceUri,
-            repo = repo
+                context = context,
+                sliceUri = sliceUri,
+                repo = repo
         )
         loadGridPath -> GridSliceBuilder(
-            context = context,
-            sliceUri = sliceUri,
-            repo = repo
+                context = context,
+                sliceUri = sliceUri,
+                repo = repo
         )
         inputRangePath -> InputRangeSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         rangePath -> RangeSliceBuilder(
-            context = context,
-            sliceUri = sliceUri
+                context = context,
+                sliceUri = sliceUri
         )
         else -> {
             Log.e(TAG, "Unknown URI: $sliceUri")

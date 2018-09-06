@@ -59,7 +59,7 @@ class AppIndexingUpdateService : JobIntentService() {
         }
 
         firebaseAppIndex.update(*appIndexDataList.toTypedArray())
-                .addOnSuccessListener { Log.d(TAG, "App Indexing complete") }
+                .addOnSuccessListener { Log.d(TAG, "App Indexing succeeded.") }
                 .addOnFailureListener { Log.d(TAG, "App Indexing failed: $it") }
     }
 
