@@ -67,6 +67,8 @@ class InteractiveSliceProvider : SliceProvider() {
 
     override fun onCreateSliceProvider(): Boolean {
 
+        Log.d(TAG, "onCreateSliceProvider()")
+
         val contextNonNull  = context ?: return false
 
         repo = DataRepository(FakeDataSource(Handler()))
@@ -98,10 +100,17 @@ class InteractiveSliceProvider : SliceProvider() {
         return true
     }
 
+    /*
+     * Takes an Intent (as specified by the intent-filter in the manifest) with data
+     * ("https://interactivesliceprovider.android.example.com/<your_path>") and returns a content
+     * URI ("content://com.example.android.interactivesliceprovider/<your_path>").
+     */
     override fun onMapIntentToUri(intent: Intent): Uri {
 
-        val intentPath = intent.data.path
-        val uri = context.buildUriWithAuthority(intent.data.path.replace("/", ""))
+        val intentPath = intent?.data?.path ?: "/"
+        val uriWithoutPathSlash = intentPath.replace("/", "")
+
+        val uri = context.buildUriWithAuthority(uriWithoutPathSlash)
 
         Log.d(TAG, "onMapIntentToUri(): \nintentPath: $intentPath \nuri:$uri")
 

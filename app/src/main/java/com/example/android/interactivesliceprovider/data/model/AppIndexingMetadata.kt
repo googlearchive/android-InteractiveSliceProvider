@@ -15,4 +15,8 @@
  */
 package com.example.android.interactivesliceprovider.data.model
 
-data class AppIndexingMetadata(val url: String, val name: String, val keywords: List<String>)
+data class AppIndexingMetadata(
+        val httpUrl: String,
+        val contentUri: String,
+        val name: String,
+        val keywords: List<String>)
