@@ -20,11 +20,14 @@ import android.content.Context
 import android.net.Uri
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
+import androidx.slice.builders.SliceAction
 import androidx.slice.builders.cell
 import androidx.slice.builders.gridRow
 import androidx.slice.builders.header
 import androidx.slice.builders.list
+import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.R.drawable
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.SliceBuilder
 import com.example.android.interactivesliceprovider.data.DataRepository
 
@@ -39,6 +42,16 @@ class GridSliceBuilder(
         header {
             setTitle(data.title, data.title.isEmpty())
             setSubtitle(data.subtitle, data.subtitle.isEmpty())
+            primaryAction = SliceAction.create(
+                    SliceActionsBroadcastReceiver.getIntent(
+                            context,
+                            InteractiveSliceProvider.ACTION_TOAST,
+                            "Primary Action for Grid Slice"
+                    ),
+                    IconCompat.createWithResource(context, drawable.ic_home),
+                    ListBuilder.ICON_IMAGE,
+                    "Primary"
+            )
         }
         gridRow {
             cell {

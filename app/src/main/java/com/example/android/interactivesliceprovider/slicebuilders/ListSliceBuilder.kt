@@ -21,9 +21,13 @@ import android.net.Uri
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.Slice
 import androidx.slice.builders.ListBuilder
+import androidx.slice.builders.SliceAction
+import androidx.slice.builders.header
 import androidx.slice.builders.list
 import androidx.slice.builders.row
+import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.R
+import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.SliceBuilder
 import com.example.android.interactivesliceprovider.data.DataRepository
 
@@ -36,6 +40,20 @@ class ListSliceBuilder(
     override fun buildSlice(): Slice {
         val listData = repo.getListData()
         return list(context, sliceUri, 6_000) {
+            header {
+                setTitle("Times to Destinations")
+                setSubtitle("List Slice Type")
+                primaryAction = SliceAction.create(
+                        SliceActionsBroadcastReceiver.getIntent(
+                                context,
+                                InteractiveSliceProvider.ACTION_TOAST,
+                                "Primary Action for List Slice"
+                        ),
+                        IconCompat.createWithResource(context, R.drawable.ic_work),
+                        ListBuilder.ICON_IMAGE,
+                        "Primary"
+                )
+            }
             row {
                 title = "Work"
                 setSubtitle(listData.work, listData.work.isEmpty())

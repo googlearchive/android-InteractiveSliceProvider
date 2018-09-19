@@ -41,8 +41,8 @@ class GallerySliceBuilder(
             SliceActionsBroadcastReceiver.getIntent(
                 context, InteractiveSliceProvider.ACTION_TOAST, "open photo album"
             ),
-            IconCompat.createWithResource(context, drawable.slices_1),
-            ListBuilder.LARGE_IMAGE,
+            IconCompat.createWithResource(context, drawable.ic_location),
+            ListBuilder.ICON_IMAGE,
             "Open photo album"
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {

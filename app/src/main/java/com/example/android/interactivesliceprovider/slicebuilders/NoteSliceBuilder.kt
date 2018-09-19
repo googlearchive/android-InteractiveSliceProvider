@@ -35,7 +35,19 @@ class NoteSliceBuilder(
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         setAccentColor(0xff4285)
-        row { setTitle("Create new note") }
+        row {
+            setTitle("Create new note")
+            primaryAction = SliceAction.create(
+                    SliceActionsBroadcastReceiver.getIntent(
+                            context,
+                            InteractiveSliceProvider.ACTION_TOAST,
+                            "Primary Action for Note Slice"
+                    ),
+                    IconCompat.createWithResource(context, drawable.ic_create),
+                    ListBuilder.ICON_IMAGE,
+                    "Primary"
+            )
+        }
         addAction(
             SliceAction.create(
                 SliceActionsBroadcastReceiver.getIntent(

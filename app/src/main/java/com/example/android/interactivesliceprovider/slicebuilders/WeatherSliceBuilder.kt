@@ -24,6 +24,7 @@ import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import androidx.slice.builders.cell
 import androidx.slice.builders.gridRow
+import androidx.slice.builders.header
 import androidx.slice.builders.list
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
@@ -42,11 +43,16 @@ class WeatherSliceBuilder(
                 InteractiveSliceProvider.ACTION_TOAST,
                 "open weather app"
             ),
-            IconCompat.createWithResource(context, drawable.weather_1),
-            ListBuilder.SMALL_IMAGE,
+            IconCompat.createWithResource(context, drawable.ic_location),
+            ListBuilder.ICON_IMAGE,
             "Weather is happening!"
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
+            header {
+                setTitle("Weather")
+                setSubtitle("Weather Slice Example")
+                setPrimaryAction(action)
+            }
             gridRow {
                 primaryAction = action
                 cell {
