@@ -18,6 +18,7 @@ package com.example.android.interactivesliceprovider.slicebuilders
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
@@ -46,7 +47,7 @@ class GallerySliceBuilder(
             "Open photo album"
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
-            setAccentColor(0xff4285)
+            setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             row {
                 title = "Family trip to Hawaii"
                 subtitle = ("Sep 30, 2017 - Oct 2, 2017")

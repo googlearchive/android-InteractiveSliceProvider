@@ -20,6 +20,7 @@ import android.content.Context
 import android.net.Uri
 import android.net.wifi.WifiManager
 import android.provider.Settings
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.Slice
 import androidx.slice.builders.ListBuilder
@@ -71,7 +72,7 @@ class WifiSliceBuilder(
         else
             "Wifi disconnected, 10 networks available"
         return list(context, sliceUri, ListBuilder.INFINITY) {
-            setAccentColor(0xff4285)
+            setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             header {
                 setTitle("Wi-fi")
                 setSubtitle(state)

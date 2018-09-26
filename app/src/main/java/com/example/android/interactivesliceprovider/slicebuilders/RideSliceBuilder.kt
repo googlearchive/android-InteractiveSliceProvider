@@ -21,6 +21,7 @@ import android.net.Uri
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.Slice
 import androidx.slice.builders.ListBuilder
@@ -29,6 +30,7 @@ import androidx.slice.builders.header
 import androidx.slice.builders.list
 import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
+import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
@@ -66,7 +68,7 @@ class RideSliceBuilder(
             "Get Ride"
         )
         return list(context, sliceUri, TimeUnit.SECONDS.toMillis(10)) {
-            setAccentColor(0xff4285)
+            setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             header {
                 title = "Get ride"
                 subtitle = headerSubtitle

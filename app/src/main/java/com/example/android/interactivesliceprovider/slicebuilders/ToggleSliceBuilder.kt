@@ -18,12 +18,14 @@ package com.example.android.interactivesliceprovider.slicebuilders
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import androidx.slice.builders.list
 import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
+import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R.drawable
 import com.example.android.interactivesliceprovider.SliceBuilder
@@ -34,7 +36,7 @@ class ToggleSliceBuilder(
 ) : SliceBuilder(sliceUri) {
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
-        setAccentColor(0xff4285)
+        setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
         row {
             title = ("Custom toggle")
             subtitle = ("It can support two states")

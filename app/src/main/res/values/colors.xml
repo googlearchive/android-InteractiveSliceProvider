@@ -17,4 +17,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="slice_accent_color">#FFFF4285</color>
 </resources>

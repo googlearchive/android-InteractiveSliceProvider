@@ -18,6 +18,7 @@ package com.example.android.interactivesliceprovider.slicebuilders
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.Slice
 import androidx.slice.builders.ListBuilder
@@ -37,7 +38,7 @@ class RangeSliceBuilder(
     override fun buildSlice(): Slice {
         val icon = IconCompat.createWithResource(context, R.drawable.ic_star_on)
         return list(context, sliceUri, ListBuilder.INFINITY) {
-            setAccentColor(0xff4285)
+            setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             range {
                 title = ("Download progress")
                 subtitle = ("Download is happening")

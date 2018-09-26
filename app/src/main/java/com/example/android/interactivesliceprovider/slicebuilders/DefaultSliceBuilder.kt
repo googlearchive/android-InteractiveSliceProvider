@@ -17,6 +17,7 @@ package com.example.android.interactivesliceprovider.slicebuilders
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
@@ -39,7 +40,7 @@ class DefaultSliceBuilder(
                 "Open app"
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
-            setAccentColor(0xff4285)
+            setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             row {
                 title = "Default app launcher slice!"
                 primaryAction = action
