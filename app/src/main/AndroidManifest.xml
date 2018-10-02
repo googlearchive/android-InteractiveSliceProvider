@@ -113,17 +113,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".sliceactivities.HelloSliceActivity">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="@string/scheme_slice_url"
-                    android:host="@string/host_slice_url"
-                    android:pathPrefix="@string/hello_slice_path" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".sliceactivities.InputRangeSliceActivity">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />

@@ -92,7 +92,6 @@ class MainActivity : AppCompatActivity() {
     private fun grantNonDefaultSlicePermission () {
 
         val nonDefaultUris = listOf(
-                applicationContext.resources.getString(R.string.hello_slice_uri),
                 applicationContext.resources.getString(R.string.wifi_slice_uri),
                 applicationContext.resources.getString(R.string.note_slice_uri),
                 applicationContext.resources.getString(R.string.ride_slice_uri),

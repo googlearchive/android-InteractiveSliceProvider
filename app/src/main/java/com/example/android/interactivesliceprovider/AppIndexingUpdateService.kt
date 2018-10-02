@@ -96,7 +96,6 @@ class AppIndexingUpdateService : JobIntentService() {
 
         val defaultPath = application.resources.getString(R.string.default_slice_path)
 
-        val helloPath = application.resources.getString(R.string.hello_slice_path)
         val wifiPath = application.resources.getString(R.string.wifi_slice_path)
         val notePath = application.resources.getString(R.string.note_slice_path)
 
@@ -118,12 +117,6 @@ class AppIndexingUpdateService : JobIntentService() {
                         contentUri = hostContentUri + defaultPath,
                         name = "Default",
                         keywords = listOf("default", "defaultest1234")
-                ),
-                AppIndexingMetadata(
-                        httpUrl = hostHttpsUrl + helloPath,
-                        contentUri = hostContentUri + helloPath,
-                        name = "Hello",
-                        keywords = listOf("hello", "hellotest1234")
                 ),
                 AppIndexingMetadata(
                         httpUrl = hostHttpsUrl + wifiPath,

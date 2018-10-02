@@ -22,7 +22,6 @@
     <!-- Body text for each Activity associated with a slice. -->
     <string name="gallery_slice_activity_body">Gallery Slice Activity</string>
     <string name="grid_slice_activity_body">Grid Slice Activity</string>
-    <string name="hello_slice_activity_body">Hello Slice Activity</string>
     <string name="input_range_slice_activity_body">Input Range Slice Activity</string>
     <string name="list_slice_activity_body">List Slice Activity</string>
     <string name="note_slice_activity_body">Note Slice Activity</string>
@@ -52,7 +51,6 @@
     <!-- Other Slice URIs -->
     <string name="gallery_slice_uri">content://com.example.android.interactivesliceprovider/gallery</string>
     <string name="grid_slice_uri">content://com.example.android.interactivesliceprovider/loadgrid</string>
-    <string name="hello_slice_uri">content://com.example.android.interactivesliceprovider/hello</string>
 
     <string name="input_slice_uri">content://com.example.android.interactivesliceprovider/inputrange</string>
     <string name="list_slice_uri">content://com.example.android.interactivesliceprovider/loadlist</string>
@@ -72,7 +70,6 @@
 
     <string name="gallery_slice_path">/gallery</string>
     <string name="grid_slice_path">/loadgrid</string>
-    <string name="hello_slice_path">/hello</string>
 
     <string name="input_slice_path">/inputrange</string>
     <string name="list_slice_path">/loadlist</string>

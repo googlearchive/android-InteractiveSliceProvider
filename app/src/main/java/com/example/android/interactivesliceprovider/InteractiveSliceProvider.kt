@@ -28,7 +28,6 @@ import com.example.android.interactivesliceprovider.data.FakeDataSource
 import com.example.android.interactivesliceprovider.slicebuilders.DefaultSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.GallerySliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.GridSliceBuilder
-import com.example.android.interactivesliceprovider.slicebuilders.HelloSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.InputRangeSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.ListSliceBuilder
 import com.example.android.interactivesliceprovider.slicebuilders.NoteSliceBuilder
@@ -52,7 +51,6 @@ class InteractiveSliceProvider : SliceProvider() {
     private lateinit var hostNameUrl: String
 
     private lateinit var defaultPath: String
-    private lateinit var helloPath: String
     private lateinit var wifiPath: String
     private lateinit var notePath: String
     private lateinit var ridePath: String
@@ -81,7 +79,6 @@ class InteractiveSliceProvider : SliceProvider() {
 
         defaultPath = contextNonNull.resources.getString(R.string.default_slice_path)
 
-        helloPath = contextNonNull.resources.getString(R.string.hello_slice_path)
         wifiPath = contextNonNull.resources.getString(R.string.wifi_slice_path)
         notePath = contextNonNull.resources.getString(R.string.note_slice_path)
 
@@ -129,10 +126,6 @@ class InteractiveSliceProvider : SliceProvider() {
 
     private fun getSliceBuilder(sliceUri: Uri) = when (sliceUri.path) {
         defaultPath -> DefaultSliceBuilder(
-                context = context,
-                sliceUri = sliceUri
-        )
-        helloPath -> HelloSliceBuilder(
                 context = context,
                 sliceUri = sliceUri
         )
