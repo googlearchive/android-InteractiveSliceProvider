@@ -164,13 +164,13 @@ class AppIndexingUpdateService : JobIntentService() {
                         httpUrl = hostHttpsUrl + loadListPath,
                         contentUri = hostContentUri + loadListPath,
                         name = "Load List",
-                        keywords = listOf("load", "list", "loadlist", "loadlisttest1234")
+                        keywords = listOf("list", "loadlist", "loadlisttest1234")
                 ),
                 AppIndexingMetadata(
                         httpUrl = hostHttpsUrl + loadGridPath,
                         contentUri = hostContentUri + loadGridPath,
                         name = "Load Grid",
-                        keywords = listOf("load", "grid", "loadgrid", "loadgridtest1234")
+                        keywords = listOf("grid", "loadgrid", "loadgridtest1234")
                 ),
                 AppIndexingMetadata(
                         httpUrl = hostHttpsUrl + inputRangePath,

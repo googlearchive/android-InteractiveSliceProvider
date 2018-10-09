@@ -25,7 +25,7 @@ import androidx.slice.builders.SliceAction
 import androidx.slice.builders.cell
 import androidx.slice.builders.gridRow
 import androidx.slice.builders.list
-import androidx.slice.builders.row
+import androidx.slice.builders.header
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
 import com.example.android.interactivesliceprovider.R
@@ -48,7 +48,7 @@ class GallerySliceBuilder(
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
-            row {
+            header {
                 title = "Family trip to Hawaii"
                 subtitle = ("Sep 30, 2017 - Oct 2, 2017")
                 primaryAction = action

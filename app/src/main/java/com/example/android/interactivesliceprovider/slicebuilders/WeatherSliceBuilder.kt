@@ -49,9 +49,9 @@ class WeatherSliceBuilder(
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
             header {
-                setTitle("Weather")
-                setSubtitle("Weather Slice Example")
-                setPrimaryAction(action)
+                title = "Weather"
+                subtitle = "Weather Slice Example"
+                primaryAction = action
             }
             gridRow {
                 primaryAction = action

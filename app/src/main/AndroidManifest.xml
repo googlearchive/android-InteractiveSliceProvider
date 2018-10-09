@@ -70,6 +70,8 @@
             </intent-filter>
         </provider>
 
+        <receiver android:name=".SliceActionsBroadcastReceiver" />
+
         <receiver
             android:name=".AppIndexingUpdateReceiver"
             android:exported="true"

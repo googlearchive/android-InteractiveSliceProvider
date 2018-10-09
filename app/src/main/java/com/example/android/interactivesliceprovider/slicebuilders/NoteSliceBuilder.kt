@@ -22,8 +22,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
+import androidx.slice.builders.header
 import androidx.slice.builders.list
-import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
@@ -37,8 +37,8 @@ class NoteSliceBuilder(
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
-        row {
-            setTitle("Create new note")
+        header {
+            title = "Create new note"
             primaryAction = SliceAction.create(
                     SliceActionsBroadcastReceiver.getIntent(
                             context,

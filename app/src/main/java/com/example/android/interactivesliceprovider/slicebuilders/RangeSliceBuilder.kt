@@ -40,10 +40,10 @@ class RangeSliceBuilder(
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             range {
-                title = ("Download progress")
-                subtitle = ("Download is happening")
-                max = (100)
-                value = (75)
+                title = "Download progress"
+                subtitle = "Download is happening"
+                max = 100
+                value = 75
                 primaryAction = SliceAction.create(
                     SliceActionsBroadcastReceiver.getIntent(
                         context, InteractiveSliceProvider.ACTION_TOAST, "open download"

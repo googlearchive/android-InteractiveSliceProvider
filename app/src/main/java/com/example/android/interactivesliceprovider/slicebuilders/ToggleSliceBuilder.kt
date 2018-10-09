@@ -22,8 +22,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
+import androidx.slice.builders.header
 import androidx.slice.builders.list
-import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.InteractiveSliceProvider
 import com.example.android.interactivesliceprovider.R
 import com.example.android.interactivesliceprovider.SliceActionsBroadcastReceiver
@@ -37,20 +37,18 @@ class ToggleSliceBuilder(
 
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
-        row {
-            title = ("Custom toggle")
-            subtitle = ("It can support two states")
-            primaryAction = (
-                SliceAction.createToggle(
+        header {
+            title = "Custom toggle"
+            subtitle = "It can support two states"
+            primaryAction = SliceAction.createToggle(
                     SliceActionsBroadcastReceiver.getIntent(
-                        context,
-                        InteractiveSliceProvider.ACTION_TOAST,
-                        "star toggled"
+                            context,
+                            InteractiveSliceProvider.ACTION_TOAST,
+                            "star toggled"
                     ),
                     IconCompat.createWithResource(context, drawable.toggle_star),
                     "Toggle start",
                     true /* isChecked */
-                )
             )
         }
     }

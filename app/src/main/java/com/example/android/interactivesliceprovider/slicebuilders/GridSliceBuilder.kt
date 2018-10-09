@@ -40,6 +40,7 @@ class GridSliceBuilder(
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         val data = repo.getGridData()
         header {
+            // Second argument for title/subtitle informs system we are waiting for data to load.
             setTitle(data.title, data.title.isEmpty())
             setSubtitle(data.subtitle, data.subtitle.isEmpty())
             primaryAction = SliceAction.create(

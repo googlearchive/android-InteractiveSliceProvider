@@ -60,7 +60,7 @@ class WifiSliceBuilder(
 
         // Set the first row as a toggle
         val finalWifiEnabled = wifiEnabled
-        val primaryAction = SliceAction.create(
+        val mainAction = SliceAction.create(
             InteractiveSliceProvider.getPendingIntent(context, Settings.ACTION_WIFI_SETTINGS),
             IconCompat.createWithResource(context, drawable.ic_wifi),
             ListBuilder.ICON_IMAGE,
@@ -74,10 +74,10 @@ class WifiSliceBuilder(
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
             header {
-                setTitle("Wi-fi")
-                setSubtitle(state)
-                setContentDescription(sliceCDString)
-                setPrimaryAction(primaryAction)
+                title = "Wi-fi"
+                subtitle = state
+                contentDescription = sliceCDString
+                primaryAction = mainAction
             }
             addAction(
                 SliceAction.createToggle(
@@ -91,12 +91,13 @@ class WifiSliceBuilder(
             // Add fake wifi networks
             val wifiIcons =
                 intArrayOf(R.drawable.ic_wifi_full, R.drawable.ic_wifi_low, R.drawable.ic_wifi_fair)
+
             for (i in 0..9) {
                 val iconId = wifiIcons[i % wifiIcons.size]
                 val icon = IconCompat.createWithResource(context, iconId)
                 val networkName = "Network$i"
                 row {
-                    setTitle(networkName)
+                    title = networkName
                     setTitleItem(icon, ListBuilder.ICON_IMAGE)
                     val locked = i % 3 == 0
                     if (locked) {
@@ -109,16 +110,15 @@ class WifiSliceBuilder(
                         setContentDescription("Connect to $networkName")
                     }
                     val message =
-                        if (locked) "Open wifi password dialog" else "Connect to $networkName"
-                    setPrimaryAction(
-                        SliceAction.create(
+                            if (locked) "Open wifi password dialog" else "Connect to $networkName"
+
+                    primaryAction = SliceAction.create(
                             SliceActionsBroadcastReceiver.getIntent(
-                                context, InteractiveSliceProvider.ACTION_TOAST, message
+                                    context, InteractiveSliceProvider.ACTION_TOAST, message
                             ),
                             icon,
                             ListBuilder.ICON_IMAGE,
                             message
-                        )
                     )
                 }
             }
@@ -130,7 +130,7 @@ class WifiSliceBuilder(
                     IconCompat.createWithResource(context, R.drawable.ic_right_caret),
                     ListBuilder.SMALL_IMAGE
                 )
-                setPrimaryAction(primaryAction)
+                primaryAction = mainAction
             }
         }
     }

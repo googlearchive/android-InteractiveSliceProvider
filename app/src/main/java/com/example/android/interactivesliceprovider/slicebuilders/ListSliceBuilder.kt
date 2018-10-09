@@ -41,8 +41,8 @@ class ListSliceBuilder(
         val listData = repo.getListData()
         return list(context, sliceUri, 6_000) {
             header {
-                setTitle("Times to Destinations")
-                setSubtitle("List Slice Type")
+                title = "Times to Destinations"
+                subtitle = "List Slice Type"
                 primaryAction = SliceAction.create(
                         SliceActionsBroadcastReceiver.getIntent(
                                 context,
@@ -56,6 +56,7 @@ class ListSliceBuilder(
             }
             row {
                 title = "Work"
+                // Second argument for subtitle informs system we are waiting for data to load.
                 setSubtitle(listData.work, listData.work.isEmpty())
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_work),
@@ -64,6 +65,7 @@ class ListSliceBuilder(
             }
             row {
                 title = "Home"
+                // Second argument for subtitle informs system we are waiting for data to load.
                 setSubtitle(listData.home, listData.home.isEmpty())
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_home),
@@ -72,6 +74,7 @@ class ListSliceBuilder(
             }
             row {
                 title = "School"
+                // Second argument for subtitle informs system we are waiting for data to load.
                 setSubtitle(listData.school, listData.school.isEmpty())
                 addEndItem(
                     IconCompat.createWithResource(context, R.drawable.ic_school),

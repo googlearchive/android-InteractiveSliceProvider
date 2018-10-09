@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
+import androidx.slice.builders.header
 import androidx.slice.builders.list
 import androidx.slice.builders.row
 import com.example.android.interactivesliceprovider.MainActivity
@@ -35,14 +36,33 @@ class DefaultSliceBuilder(
     override fun buildSlice() = list(context, sliceUri, ListBuilder.INFINITY) {
         val action = SliceAction.create(
                 MainActivity.getPendingIntent(context),
-                IconCompat.createWithResource(context, R.drawable.slices_1),
+                IconCompat.createWithResource(context, R.mipmap.ic_launcher),
                 ListBuilder.LARGE_IMAGE,
                 "Open app"
         )
         return list(context, sliceUri, ListBuilder.INFINITY) {
             setAccentColor(ContextCompat.getColor(context, R.color.slice_accent_color))
-            row {
+            header {
                 title = "Default app launcher slice!"
+                subtitle = "Header subtitle"
+                summary = "Header Summary"
+                contentDescription = "Header Content Description"
+                primaryAction = action
+            }
+            row {
+                subtitle = "Subtitle for row 2!"
+                contentDescription = "Row 2 Content Description"
+                // Places icon/action at the front of the slice.
+                // Note, these sorts of icons aren't allowed on the first row in a slice (usually
+                // reserved for the header).
+                setTitleItem(action)
+                primaryAction = action
+                }
+            row {
+                title = "Try this third row!"
+                subtitle = "Subtitle for row 3!"
+                contentDescription = "Row 3 Content Description"
+                addEndItem(action)
                 primaryAction = action
             }
         }
